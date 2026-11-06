@@ -1,0 +1,15 @@
+name: macOS build and tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Build Universal app and run local checks
+        run: bash Scripts/build.sh
+      - name: Show local test report
+        run: cat Verification/tests.json
